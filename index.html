@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meditații Matematică – Brașov</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --cream: #f5f0e8; --dark: #1a1612; --accent: #c8602a; --accent2: #e8a87c; --muted: #7a6f65; --light: #fffdf9; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { background: var(--dark); display: flex; flex-direction: column; justify-content: center; padding: 80px 60px; position: relative; z-index: 2; }
+  .hero-left::after { content: ''; position: absolute; right: -40px; top: 0; width: 80px; height: 100%; background: var(--dark); clip-path: polygon(0 0, 0% 100%, 100% 100%); z-index: 3; }
+  .tag { display: inline-block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 32px; font-weight: 500; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 5vw, 72px); line-height: 1.05; color: var(--light); margin-bottom: 28px; }
+  .hero-title em { font-style: italic; color: var(--accent2); }
+  .hero-desc { color: #a09890; font-size: 16px; line-height: 1.75; max-width: 380px; margin-bottom: 48px; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--accent); color: white; text-decoration: none; padding: 16px 32px; font-size: 14px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; position: relative; overflow: hidden; }
+  .cta-btn:hover { background: var(--accent2); }
+  .hero-right { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 80px 60px 80px 100px; position: relative; }
+  .math-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .math-symbol { position: absolute; font-family: 'Playfair Display', serif; color: rgba(200, 96, 42, 0.08); font-size: var(--size, 80px); animation: float var(--dur, 6s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+  @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+  .stats-card { background: white; padding: 48px 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.08); position: relative; z-index: 2; width: 100%; max-width: 360px; }
+  .stats-card::before { content: ''; position: absolute; top: -4px; left: 40px; width: 60px; height: 4px; background: var(--accent); }
+  .stat-item { padding: 20px 0; border-bottom: 1px solid #f0ebe3; }
+  .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .stat-item:first-child { padding-top: 0; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 13px; color: var(--muted); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--light); font-weight: 700; text-decoration: none; }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent2); }
+  .about { padding: 120px 60px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; align-items: center; }
+  .section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 20px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 52px); line-height: 1.15; margin-bottom: 28px; }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .about-text { color: var(--muted); line-height: 1.9; font-size: 16px; }
+  .about-text p + p { margin-top: 16px; }
+  .big-quote { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 42px); font-style: italic; line-height: 1.4; color: var(--dark); position: relative; padding-left: 32px; }
+  .big-quote::before { content: '"'; position: absolute; left: 0; top: -10px; font-size: 80px; color: var(--accent2); line-height: 1; font-style: normal; }
+  .services { background: var(--dark); padding: 100px 60px; position: relative; overflow: hidden; }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services-header { margin-bottom: 60px; }
+  .services-header .section-title { color: var(--light); margin-bottom: 0; }
+  .services-header .section-tag { color: var(--accent2); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .service-card { background: rgba(255,255,255,0.03); padding: 48px 36px; border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s ease; }
+  .service-card:hover { background: rgba(255,255,255,0.06); }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: rgba(200,96,42,0.2); line-height: 1; margin-bottom: 24px; }
+  .service-name { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--light); margin-bottom: 16px; }
+  .service-desc { color: #6a6058; font-size: 14px; line-height: 1.8; }
+  .service-price { margin-top: 32px; font-size: 13px; color: var(--accent2); letter-spacing: 1px; text-transform: uppercase; }
+  .how { padding: 120px 60px; max-width: 1200px; margin: 0 auto; }
+  .how-header { text-align: center; margin-bottom: 80px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .step { padding: 0 24px; text-align: center; }
+  .step-circle { width: 80px; height: 80px; border: 1px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--accent); background: var(--cream); transition: all 0.3s; }
+  .step:hover .step-circle { background: var(--accent); color: white; }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 12px; }
+  .step-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .contact { background: var(--accent); padding: 100px 60px; text-align: center; position: relative; overflow: hidden; }
+  .contact-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 64px); color: white; margin-bottom: 20px; }
+  .contact-sub { color: rgba(255,255,255,0.7); font-size: 17px; margin-bottom: 48px; }
+  .contact-btn { display: inline-flex; align-items: center; gap: 12px; background: white; color: var(--accent); text-decoration: none; padding: 18px 40px; font-size: 14px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; }
+  .contact-btn:hover { background: var(--dark); color: white; }
+  footer { background: var(--dark); padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--light); }
+  .footer-logo span { color: var(--accent2); }
+  .footer-info { font-size: 13px; color: #4a4038; }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 120px 32px 60px; }
+    .hero-left::after { display: none; }
+    .hero-right { padding: 60px 32px; }
+    .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; }
+    .services { padding: 80px 32px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .how { padding: 80px 32px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    nav { padding: 20px 32px; }
+    .nav-links { display: none; }
+    .contact { padding: 80px 32px; }
+    footer { padding: 32px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">M<span>²</span></a>
+  <ul class="nav-links">
+    <li><a href="#despre">Despre</a></li>
+    <li><a href="#servicii">Servicii</a></li>
+    <li><a href="#cum-functioneaza">Cum funcționează</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <span class="tag">Meditații Matematică · Brașov</span>
+    <h1 class="hero-title">Matematica<br>nu e grea.<br><em>E doar</em><br><em>neexplicată.</em></h1>
+    <p class="hero-desc">Ofer meditații la matematică pentru elevi de gimnaziu. Explic pe înțeles, cu răbdare, pas cu pas – adaptat ritmului fiecărui elev.</p>
+    <a href="https://wa.me/40786322595" class="cta-btn"><span>Scrie-mi pe WhatsApp</span></a>
+  </div>
+  <div class="hero-right">
+    <div class="math-bg">
+      <div class="math-symbol" style="--size:120px; --dur:7s; --delay:0s; top:10%; left:10%;">π</div>
+      <div class="math-symbol" style="--size:80px; --dur:5s; --delay:1s; top:60%; left:60%;">∑</div>
+      <div class="math-symbol" style="--size:100px; --dur:8s; --delay:0.5s; top:30%; right:10%;">√</div>
+      <div class="math-symbol" style="--size:60px; --dur:6s; --delay:2s; bottom:20%; left:20%;">∞</div>
+    </div>
+    <div class="stats-card">
+      <div class="stat-item"><div class="stat-num">5–8</div><div class="stat-label">Clase gimnaziu</div></div>
+      <div class="stat-item"><div class="stat-num">1.5–2h</div><div class="stat-label">Durata unei ședințe</div></div>
+      <div class="stat-item"><div class="stat-num">100% Online</div><div class="stat-label">Exclusiv pe Google Meet</div></div>
+    </div>
+  </div>
+</section>
+<section class="about" id="despre">
+  <div>
+    <p class="section-tag">Despre mine</p>
+    <h2 class="section-title">Un elev care știe<br><em>exact</em> ce simți</h2>
+    <div class="about-text">
+      <p>Sunt elev în clasa a XI-a la Colegiul Național Mesota din Brașov, profil matematică-informatică.</p>
+      <p>Știu exact ce se cere la școală acum și cum să transformi o materie de coșmar într-una de înțeles.</p>
+      <p>Meditațiile au loc exclusiv online pe Google Meet, în ședințe de 1.5–2 ore.</p>
+    </div>
+  </div>
+  <div><p class="big-quote">Nu contează unde ești acum. Contează unde poți ajunge.</p></div>
+</section>
+<section class="services" id="servicii">
+  <div class="services-inner">
+    <div class="services-header"><p class="section-tag">Ce ofer</p><h2 class="section-title">Servicii</h2></div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">01</div><h3 class="service-name">Teme & Exerciții</h3><p class="service-desc">Ajutor cu temele de matematică, pas cu pas, online pe Google Meet.</p><p class="service-price">60–80 lei / ședință · 1.5–2h</p></div>
+      <div class="service-card"><div class="service-num">02</div><h3 class="service-name">Recuperare materie</h3><p class="service-desc">Reluăm de la zero noțiunile neînțelese și construim o bază solidă.</p><p class="service-price">80–100 lei / ședință · 1.5–2h</p></div>
+      <div class="service-card"><div class="service-num">03</div><h3 class="service-name">Pregătire Evaluare Națională</h3><p class="service-desc">Plan structurat pentru clasa a VIII-a, subiecte din anii anteriori.</p><p class="service-price">100 lei / ședință · 1.5–2h</p></div>
+    </div>
+  </div>
+</section>
+<section class="how" id="cum-functioneaza">
+  <div class="how-header"><p class="section-tag">Simplu și transparent</p><h2 class="section-title">Cum funcționează</h2></div>
+  <div class="steps">
+    <div class="step"><div class="step-circle">1</div><h3 class="step-title">Mă contactezi</h3><p class="step-desc">Scrii pe WhatsApp și îmi povestești cu ce ai nevoie.</p></div>
+    <div class="step"><div class="step-circle">2</div><h3 class="step-title">Stabilim o oră</h3><p class="step-desc">Alegem un program potrivit, exclusiv online pe Google Meet.</p></div>
+    <div class="step"><div class="step-circle">3</div><h3 class="step-title">Ședință de probă</h3><p class="step-desc">Prima ședință (1.5–2h) e de probă. Dacă nu ești mulțumit, nu plătești.</p></div>
+    <div class="step"><div class="step-circle">4</div><h3 class="step-title">Progresezi</h3><p class="step-desc">Continuăm cu un plan adaptat ție până obții rezultatele dorite.</p></div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <h2 class="contact-title">Gata să începem?</h2>
+  <p class="contact-sub">Prima ședință e de probă. Fără angajament, fără presiune.</p>
+  <a href="https://wa.me/40786322595" class="contact-btn">Scrie-mi pe WhatsApp</a>
+</section>
+<footer>
+  <div class="footer-logo">M<span>²</span> Meditații Matematică</div>
+  <div class="footer-info">Brașov · Clasa a XI-a · Mesota · 100% Online · Google Meet</div>
+</footer>
+</body>
+</html>
